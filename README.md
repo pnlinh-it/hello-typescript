@@ -282,3 +282,4 @@ type PowerUser = Omit<User, 'type'> & Omit<Admin, 'type'> & {
 - [TypeScript - Getting Started](https://www.logicbig.com/tutorials/misc/typescript/type-guards.html)
 - [Advanced TypeScript Types Cheat Sheet](https://www.freecodecamp.org/news/advanced-typescript-types-cheat-sheet-with-examples/#intersection-types)
 - [The TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+- [Typescript exercise](https://typescript-exercises.github.io/#exercise=6&file=%2Findex.ts)
