@@ -365,6 +365,7 @@ class Rocket {
 }
 ```
 - [Using Class Decorators in Typescript with a real example](https://dev.to/danywalls/decorators-in-typescript-with-example-part-1-m0f)
+- [Exploring EcmaScript Decorators](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841)
 
 # Reference
 - [TypeScript - Getting Started](https://www.logicbig.com/tutorials/misc/typescript/type-guards.html)
