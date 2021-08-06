@@ -277,8 +277,89 @@ type PowerUser = Omit<User, 'type'> & Omit<Admin, 'type'> & {
     type: 'powerUser'
 };
 ```
+# Decorator
+```typescript
+function second(option: string) {
+    console.log("second(): factory evaluated");
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        console.log("second(): called");
+    };
+}
+
+class ExampleClass {
+    @second('hello')
+    method() {
+        console.log(1)
+    }
+}
+```
+- Execute after class declaration not when instantiate
+- Notice the last line: actual it first generates a function name `__decorate`.  
+- Then executes it wit after class declaration.
+- Run get and result of `second()`
+- Pass the result to the `__decorate()`
+- The order is: `second()` → `__decorate()` → `functionReturnFromSecond()`
+```typescript
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length
+    var r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc;
+    var d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") {
+        r = Reflect.decorate(decorators, target, key, desc);
+    } else {
+        for (var i = decorators.length - 1; i >= 0; i--) {
+            if (d = decorators[i]) {
+                // This line will invoke function return from second function.
+                r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+            }
+        }
+    }
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+function second(target: Object,
+                propertyKey: string,
+                descriptor: PropertyDescriptor) {
+    // This execute before __decorate()
+    // In nestjs, @Get(), @Post() maybe use descriptor.value to register handler to router...
+    return function (target, propertyKey, descriptor) {
+        // We can override origin method by: descriptor.value = function (...args) { }
+        // This still execute when class declare
+    };
+}
+
+class ExampleClass {
+    method() {
+        console.log(1);
+    }
+}
+
+__decorate([ second() ], ExampleClass.prototype, "method", null);
+```
+Another example to measure the execution time. [See more](https://blog.logrocket.com/a-practical-guide-to-typescript-decorators/)
+```typescript
+function measure(target: Object,
+                propertyKey: string,
+                descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value;
+
+    // descriptor.value is point to measure method
+    // In this case we override origin method
+    descriptor.value = function (...args) {
+        const start = performance.now();
+        const result = originalMethod.apply(this, args);
+        const finish = performance.now();
+        console.log(`Execution time: ${finish - start} milliseconds`);
+        return result;
+    };
+
+    return descriptor;
+}
+```
+
 
 # Reference
 - [TypeScript - Getting Started](https://www.logicbig.com/tutorials/misc/typescript/type-guards.html)
 - [Advanced TypeScript Types Cheat Sheet](https://www.freecodecamp.org/news/advanced-typescript-types-cheat-sheet-with-examples/#intersection-types)
 - [The TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+- [Using Class Decorators in Typescript with a real example](https://dev.to/danywalls/decorators-in-typescript-with-example-part-1-m0f)
