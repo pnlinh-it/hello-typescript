@@ -336,6 +336,9 @@ class ExampleClass {
 
 __decorate([ second() ], ExampleClass.prototype, "method", null);
 ```
+
+![decorator](https://user-images.githubusercontent.com/11713395/128552061-35868bf3-c9ed-48c2-ab71-7fcb5151a357.gif)
+
 Another example to measure the execution time. [See more](https://blog.logrocket.com/a-practical-guide-to-typescript-decorators/)
 ```typescript
 function measure(target: Object,
