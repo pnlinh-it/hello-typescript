@@ -343,9 +343,10 @@ function measure(target: Object,
                 descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
-    // descriptor.value is point to measure method
+    // descriptor.value is point to launch method
     // In this case we override origin method
     descriptor.value = function (...args) {
+        // This will invoke after launch is get called
         const start = performance.now();
         const result = originalMethod.apply(this, args);
         const finish = performance.now();
@@ -355,11 +356,18 @@ function measure(target: Object,
 
     return descriptor;
 }
-```
 
+class Rocket {
+    @measure
+    launch() {
+        console.log("Launching in 3... 2... 1... 🚀");
+    }
+}
+```
+- [Using Class Decorators in Typescript with a real example](https://dev.to/danywalls/decorators-in-typescript-with-example-part-1-m0f)
 
 # Reference
 - [TypeScript - Getting Started](https://www.logicbig.com/tutorials/misc/typescript/type-guards.html)
 - [Advanced TypeScript Types Cheat Sheet](https://www.freecodecamp.org/news/advanced-typescript-types-cheat-sheet-with-examples/#intersection-types)
 - [The TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
-- [Using Class Decorators in Typescript with a real example](https://dev.to/danywalls/decorators-in-typescript-with-example-part-1-m0f)
+- [Typescript exercise](https://typescript-exercises.github.io/#exercise=6&file=%2Findex.ts)
