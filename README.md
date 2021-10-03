@@ -370,10 +370,6 @@ class Rocket {
 - [Using Class Decorators in Typescript with a real example](https://dev.to/danywalls/decorators-in-typescript-with-example-part-1-m0f)
 - [Exploring EcmaScript Decorators](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841)
 
-
-- https://dmitripavlutin.com/typescript-index-signatures/
-- https://blog.logrocket.com/building-type-safe-dictionary-typescript/
-
 ## Using the Indexed Access Operator
 - Essential of Typescript
 ```ts
