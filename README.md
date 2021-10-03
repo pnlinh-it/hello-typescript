@@ -415,6 +415,21 @@ console.log(getValue(e, "role"));
 
 `T[K]` tells the compiler that the result of the getValue function will have the type of the property whose name is specified by the keyof type argument, leaving the compiler to determine the result types based on the generic type arguments used to invoke the function. For the `Product` object, that means a `name` argument will produce a `string` result, and a `price` argument will produce a `number` result. 
 
+```ts
+class Collection<T, K extends keyof T> implements Iterable<T> {
+  private items: Map<T[K], T>;
+
+  constructor(initialItems: T[] = [], private propertyName: K) {
+    this.items = new Map<T[K], T>();
+    this.add(...initialItems);
+  }
+
+  get(key: T[K]): T {
+    return this.items.get(key);
+  }
+}
+```
+
 # Reference
 - [TypeScript - Getting Started](https://www.logicbig.com/tutorials/misc/typescript/type-guards.html)
 - [Advanced TypeScript Types Cheat Sheet](https://www.freecodecamp.org/news/advanced-typescript-types-cheat-sheet-with-examples/#intersection-types)
