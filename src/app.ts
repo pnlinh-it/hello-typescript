@@ -1,9 +1,15 @@
-import express, {Application, Request, Response, NextFunction} from 'express'
+import express, {Application, Request, Response, NextFunction, Router} from 'express'
 import routes from './routes/routes';
 
 const app: Application = express()
 
 const router = express.Router()
+
+const router2 = Router()
+
+router2.get('/testtt', (req: Request, res: Response, next: NextFunction)=>{
+    res.send('testtt');
+})
 
 const port = 4000
 
