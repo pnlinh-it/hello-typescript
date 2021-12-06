@@ -1,4 +1,5 @@
 import express, {Application, Request, Response, NextFunction} from 'express'
+import routes from './routes/routes';
 
 const app: Application = express()
 
@@ -10,6 +11,8 @@ router.use(function (req: Request, res: Response, next: NextFunction) {
     console.log('Time:', Date.now())
     next()
 })
+
+app.use('/users', routes)
 
 // a middleware sub-stack shows request info for any type of HTTP request to the /user/:id path
 router.use('/user/:id', function (req: Request, res: Response, next: NextFunction) {
