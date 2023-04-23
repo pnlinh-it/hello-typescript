@@ -1,4 +1,4 @@
-export const pi = 3.14;
+export const max = 100;
 
-export default class RandomNumberGenerator {
+export default class User {
 }

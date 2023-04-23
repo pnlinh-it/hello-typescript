@@ -1,5 +1,7 @@
-import DefaultClassName, {pi as PI} from "./export";
+import DefaultClassName, {max as MAX} from "./export";
+import {default as User, max as MAXX} from "./export";
 
-const generator = new DefaultClassName()
-
-console.log(PI)
+const user1 = new DefaultClassName()
+const user2 = new User()
+console.log(MAX)
+console.log(MAXX)

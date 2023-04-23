@@ -1,46 +1,40 @@
-# Export
-
 ```typescript
+// Separate export
 const PI = 3.14;
-const sayHello = function (name: string) {
-    console.log(name)
-}
+const sayHello = (greet: string) => { alert(greet) }
+export const NAME = 'Linh';
+export {PI, sayHello}
+// import
+import {PI, sayHello, NAME} from './separateExport'
 
-export {PI, sayHello} // Need wrap to object
-export const NAME = 'Linh'; // Need const
-export * as utilities from "./utilities"
-import {utilities} from "./index"
 
-export default class User {
-    name: string
-}
-```
+// Default export
+export default class User { name: string }
+// import
+import User from "./defaultExport"; // not {User}, just User  
+import AnyNameHere from "./defaultExport";
 
-```typescript
-const PI = 3.14;
-const PHI = 0.1;
-export default {PI, PHI}
-```
 
-# Import
+// Default export multiple
+class Circle { name: string }
+class Rectangle { name: string }
+export default {Circle, Rectangle}
+// import
+import Shape from './defaultExportMultiple'
+const circle = new Shape.Circle()
+const rectangle = new Shape.Rectangle()
 
-```typescript
-import {ZipCodeValidator} from "./ZipCodeValidator";
-import {ZipCodeValidator as ZCV} from "./ZipCodeValidator";
-import * as validator from "./ZipCodeValidator";
-import "./my-module.js";
-```
 
-```typescript
-import MyUser, {sayHello, sayGoodbye, pi as PI} from "./export";
-import Constant from "./export";
-
-Constant.PI
-Constant.PHI
+// Default and separate export
+export const MAX = 100;
+export default class User { name: string }
+// import
+import AnyUserNameHere, {MAX} from "./defaultAndSeparateExport";
+import {default as User, MAX} from "./defaultAndSeparateExport";
 ```
 
 # More
-
+- https://javascript.info/import-export
 - [Export](https://www.typescriptlang.org/docs/handbook/modules.html#export)
 - [Default export](https://www.typescriptlang.org/docs/handbook/modules.html#default-exports)
 - [Import](https://www.typescriptlang.org/docs/handbook/modules.html#import)

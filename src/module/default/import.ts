@@ -1,8 +1,8 @@
 import User from "./exportSingle";
-import AnotherUser from "./exportSingle";
+import AnyNameHere from "./exportSingle";
 
 const user = new User('Linh Pham', 12)
-const anotherUser = new AnotherUser('Linh Pham', 12)
+const anotherUser = new AnyNameHere('Linh Pham', 12)
 
 
 
